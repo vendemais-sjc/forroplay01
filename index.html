@@ -76,7 +76,7 @@
             min-height: 100vh;
         }
 
-        /* BARRA SUPERIOR COM LETREIRO - AGORA MESMA LARGURA DO VÍDEO */
+        /* BARRA SUPERIOR COM LETREIRO - MESMA LARGURA DO VÍDEO COM BORDA COLORIDA */
         .top-bar {
             background: #000000; /* Fundo preto fixo */
             padding: 0; /* Remove padding para alinhar com o vídeo */
@@ -92,7 +92,7 @@
             font-size: 1.4rem; /* Tamanho maior */
             padding: 12px 16px; /* Padding ajustado */
             cursor: pointer;
-            border: none; /* Remove borda arredondada */
+            border: 2px solid var(--primary-color); /* Borda colorida mais grossa */
             letter-spacing: 1px; /* Espaçamento entre letras */
             box-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
@@ -624,7 +624,7 @@
 </head>
 <body class="theme-pink">
     <div class="app">
-        <!-- BARRA SUPERIOR COM LETREIRO - AGORA MESMA LARGURA DO VÍDEO -->
+        <!-- BARRA SUPERIOR COM LETREIRO - COM BORDA COLORIDA -->
         <div class="top-bar">
             <div class="top-ticker" id="topTicker" title="Clique para editar">
                 <span id="topTickerText"> RÁDIO FORRÓ PLAY - A MELHOR SELEÇÃO MUSICAL - SEM ANÚNCIOS SEM VINHETAS - ATUALIZAÇÃO DIARIA COM OS MELHORES HITS - ANÚNCIE AQUI, ENTRE CONTATO 12 98846-1978</span>
@@ -680,7 +680,7 @@
             </video>
         </div>
 
-        <!-- RODAPÉ -->
+        <!-- RODAPÉ - VERSÃO ORIGINAL -->
         <div class="footer">Rádio Forró Play © 2025 • desenvolvido por Roger Mendes</div>
     </div>
 
