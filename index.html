@@ -38,7 +38,6 @@
             --control-bg: rgba(255,255,255,0.05);
             --control-hover: rgba(255,255,255,0.1);
             --player-card-bg: #0a0c12;
-            --top-bar-bg: #0a0c12;
             --footer-border: #2f3542;
         }
 
@@ -50,19 +49,31 @@
         body.theme-cyan { --bg-primary: #0a181c; --bg-secondary: #123038; --bg-drawer: #0e282f; --text-primary: #d0f0ff; --text-secondary: #90c8d0; --border-color: #1e5a6a; --primary-color: #22d3ee; --primary-light: #67e8f9; --primary-dark: #0e7490; }
         body.theme-orange { --bg-primary: #1a120a; --bg-secondary: #2e221a; --bg-drawer: #241a12; --text-primary: #ffe6d0; --text-secondary: #d0b090; --border-color: #6a4a2e; --primary-color: #fb923c; --primary-light: #fdba74; --primary-dark: #c2410c; }
 
-        /* Modo carro */
+        /* ========== MODO CARRO ========== */
         body.car-mode {
             background: #000;
         }
         body.car-mode .player-card,
         body.car-mode .top-bar {
             background: #111;
-            border: 2px solid var(--primary-color);
         }
         body.car-mode .control-btn {
             width: 60px;
             height: 60px;
             font-size: 2rem;
+        }
+        /* No modo carro, esconder o letreiro e o vídeo extra */
+        body.car-mode .top-bar,
+        body.car-mode .extra-video-container {
+            display: none !important;
+        }
+        /* Ajustar o player-card para ocupar mais espaço quando os elementos forem ocultos */
+        body.car-mode .player-card {
+            border: 2px solid var(--primary-color);
+            margin-bottom: 0;
+        }
+        body.car-mode .app {
+            justify-content: center;
         }
 
         /* Estrutura principal */
@@ -83,6 +94,7 @@
             border-top: 3px solid var(--primary-color); /* Borda superior colorida */
             border-top-left-radius: 15px;  /* Arredondamento canto esquerdo */
             border-top-right-radius: 15px; /* Arredondamento canto direito */
+            border-bottom: 1px solid var(--primary-color); /* LINHA FINA ENTRE LETREIRO E VÍDEO */
         }
         
         .top-ticker {
@@ -112,17 +124,18 @@
             100% { transform: translateX(-100%); }
         }
 
-        /* PLAYER */
+        /* PLAYER PRINCIPAL */
         .player-card {
             background: var(--player-card-bg);
             overflow: hidden;
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--primary-color); /* LINHA ABAIXO DO PRIMEIRO VÍDEO (entre player e vídeo extra) */
         }
         .video-container {
             aspect-ratio: 16 / 9;
             background: #10141c;
             position: relative;
             overflow: hidden;
+            border-bottom: 1px solid var(--primary-color); /* LINHA ABAIXO DO VÍDEO (dentro do player) */
         }
         video {
             width: 100%;
@@ -291,6 +304,7 @@
             width: 100%;
             background: #000;
             overflow: hidden;
+            border-top: 1px solid var(--primary-color); /* LINHA ACIMA DO SEGUNDO VÍDEO */
         }
         .extra-video-container video {
             width: 100%;
@@ -613,13 +627,18 @@
             transform: translateY(0);
         }
 
+        /* ===== RODAPÉ COM BORDA INFERIOR COLORIDA E ARREDONDADA ===== */
         .footer {
             text-align: center;
             padding: 15px 5px;
             font-size: 0.7rem;
             color: var(--text-secondary);
-            border-top: 1px solid var(--footer-border);
-            transition: color 0.3s, border 0.3s;
+            background: var(--bg-primary);
+            border-bottom: 3px solid var(--primary-color);
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+            border-top: 1px solid var(--primary-color); /* LINHA FINA ACIMA DO RODAPÉ */
+            transition: color 0.3s, border 0.3s, background 0.3s;
         }
 
         @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.5;} }
@@ -640,7 +659,7 @@
         <!-- PLAYER PRINCIPAL -->
         <div class="player-card">
             <div class="video-container" id="videoContainer">
-                <!-- Vídeos locais - Coloque seus vídeos na mesma pasta do HTML -->
+                <!-- Vídeos locais -->
                 <video autoplay loop muted playsinline id="mainVideo">
                     <source src="radioforro.mp4" type="video/mp4">
                     Seu navegador não suporta vídeo.
@@ -678,7 +697,7 @@
             </div>
         </div>
 
-        <!-- VÍDEO EXTRA (exemplo local) -->
+        <!-- VÍDEO EXTRA -->
         <div class="extra-video-container">
             <video autoplay loop muted playsinline>
                 <source src="pendriv.mp4" type="video/mp4">
@@ -686,7 +705,7 @@
             </video>
         </div>
 
-        <!-- RODAPÉ - VERSÃO ORIGINAL -->
+        <!-- RODAPÉ COM BORDA INFERIOR COLORIDA E ARREDONDADA -->
         <div class="footer">Rádio Forró Play © 2025 • desenvolvido por Roger Mendes</div>
     </div>
 
@@ -889,6 +908,7 @@
                     carVideo.style.display = 'block';
                     mainVideo.style.display = 'none';
                     carVideo.load();
+                    // As esconderás são feitas pelo CSS
                 } else {
                     body.classList.remove('car-mode');
                     carModeDrawerBtn.innerHTML = '<i class="fas fa-car"></i> Modo carro';
