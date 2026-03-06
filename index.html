@@ -76,12 +76,13 @@
             min-height: 100vh;
         }
 
-        /* ===== BARRA SUPERIOR COM LETREIRO - ALTERADO ===== */
-        /* Apenas borda superior colorida, sem bordas laterais ou inferior */
+        /* ===== BARRA SUPERIOR COM LETREIRO - BORDA SUPERIOR ARREDONDADA ===== */
         .top-bar {
             background: #000000; /* Fundo preto fixo */
             width: 100%;
-            border-top: 3px solid var(--primary-color); /* Apenas borda superior colorida */
+            border-top: 3px solid var(--primary-color); /* Borda superior colorida */
+            border-top-left-radius: 15px;  /* Arredondamento canto esquerdo */
+            border-top-right-radius: 15px; /* Arredondamento canto direito */
         }
         
         .top-ticker {
@@ -94,8 +95,9 @@
             font-size: 1.4rem; /* Tamanho maior */
             padding: 12px 16px; /* Padding ajustado */
             cursor: pointer;
-            /* SEM bordas laterais ou inferiores */
-            border: none;
+            border: none; /* Sem bordas laterais ou inferior */
+            border-top-left-radius: 12px;  /* Acompanha o arredondamento (um pouco menor para não sobrepor a borda) */
+            border-top-right-radius: 12px;
             letter-spacing: 1px; /* Espaçamento entre letras */
         }
         
@@ -628,7 +630,7 @@
 </head>
 <body class="theme-pink">
     <div class="app">
-        <!-- BARRA SUPERIOR COM LETREIRO - ALTERADA: APENAS BORDA SUPERIOR -->
+        <!-- BARRA SUPERIOR COM LETREIRO - BORDA SUPERIOR ARREDONDADA -->
         <div class="top-bar">
             <div class="top-ticker" id="topTicker" title="Clique para editar">
                 <span id="topTickerText"> RÁDIO FORRÓ PLAY - A MELHOR SELEÇÃO MUSICAL - SEM ANÚNCIOS SEM VINHETAS - ATUALIZAÇÃO DIARIA COM OS MELHORES HITS - ANÚNCIE AQUI, ENTRE CONTATO 12 98846-1978</span>
@@ -684,7 +686,7 @@
             </video>
         </div>
 
-        <!-- RODAPÉ -->
+        <!-- RODAPÉ - VERSÃO ORIGINAL -->
         <div class="footer">Rádio Forró Play © 2025 • desenvolvido por Roger Mendes</div>
     </div>
 
